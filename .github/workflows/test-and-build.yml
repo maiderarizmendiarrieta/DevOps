@@ -21,7 +21,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest
+        run: pytest ./ActionserakoProiektua/src/test.py
 
       - name: ruff linting txekeoa
         run: ruff check . --fix
@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./ActionserakoProiektua/src
-          file: ./ActionserakoProiektua/src/Dockerfile
+          file: ./ActionserakoProiektua/Dockerfile
           push: true
           tags: ghcr.io/maiderarizmendiarrieta/DevOps:latest
 
