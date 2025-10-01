@@ -39,8 +39,8 @@ jobs:
           context: ./ActionserakoProiektua/src
           file: ./ActionserakoProiektua/Dockerfile
           push: true
-          tags: ghcr.io/maiderarizmendiarrieta/DevOps:latest
+          tags: ghcr.io/maiderarizmendiarrieta/devops:latest
 
       - name: Test the built image
         run: |
-          docker run --rm ghcr.io/${{ github.repository_owner }}/DevOps:latest
+          docker run --rm ghcr.io/${{ github.repository_owner }}/devops:latest
