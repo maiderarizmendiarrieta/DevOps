@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,27 +18,26 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run:
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest ActionserakoProiektua/src/test.py
+        run: pytest
 
       - name: ruff linting txekeoa
-        run: ruff check .
+        run: ruff check . --fix
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
           context: ./ActionserakoProiektua/src
-          file: .
+          file: ./ActionserakoProiektua/src/Dockerfile
           push: true
           tags: ghcr.io/maiderarizmendiarrieta/DevOps:latest
 
